@@ -1,25 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { theme } from './styling'
+
+import { OrderContextProvider } from './contexts/OrderContext';
+import OrderList from './components/OrderList';
+import SearchAppBar from './components/SearchAppBar';
+import CategoryList from './components/CategoryList';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <OrderContextProvider>
+          <SearchAppBar/>
+          <CategoryList/>
+          <OrderList />
+        </OrderContextProvider>
+      </div>
+    </ThemeProvider>
   );
 }
 
